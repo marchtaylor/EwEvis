@@ -4,7 +4,7 @@ Title: Ecopath with Ecosim visualization
 Version: 0.1
 Date: 2016-11-07
 Author: Marc H. Taylor
-Maintainer: Tobias K. Mildenberger <t.k.mildenberger@gmail.com>
+Maintainer: Marc H. Taylor <ningkiling@gmail.com>
 Depends:
     R (>= 3.0.0)
 Imports:

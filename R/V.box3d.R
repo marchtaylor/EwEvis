@@ -1,12 +1,12 @@
 #' 3d trophic level volume boxes
 #'
-#' @param V vector of volumes (i.e. throughput) from lowest to highers trophic level
+#' @param V vector of volumes (i.e. biomass, throughput) from lowest to highest trophic level
 #' @param TL.len height of trophic level 
 #' @param col colors of V (vector)
 #' @param alpha alpha of V (single value (0-1))
-#' @param add.scale logical add scale
-#' @param scale.len length of side of scale (cube) 
-#' @param shift shift values (x,y,z)
+#' @param add.scale logical (TRUE / FALSE) adds scale (cube) to right of box plot
+#' @param scale.len length of side of scale cube (units of V) 
+#' @param shift shift location of plot (x,y,z). Useful in comparitive plots.
 #'
 #' @return
 #' rgl output
@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' 
-#' ### data from Tam et al (2008) - Northern Humboldt Cureent Ecosystem (1995-1996)
+#' ### data from Tam et al (2008) - Northern Humboldt Current Ecosystem (1995-1996)
 #' 
 #' # data
 #' TEgm <- 0.1014
@@ -27,19 +27,19 @@
 #' \donttest{
 #' # single plot of biomasses by TL
 #' rgl::open3d()
-#' res <- V.box3d(V=Bs[1:5], TL.len = 2, col=pal(5), scale.len = 1)
+#' res <- Vbox3d(V=Bs[1:5], TL.len = 2, col=pal(5), scale.len = 1)
 #' 
 #' # single plot of throughput by TL
 #' rgl::open3d()
-#' res <- V.box3d(V=Ts[2:5], TL.len = 10, col=pal(4), alpha=0.2, scale.len = 10)
+#' res <- Vbox3d(V=Ts[2:5], TL.len = 10, col=pal(4), alpha=0.2, scale.len = 10)
 #' 
 #' # how to set-up a comparison plot (biomass example)
 #' rgl::open3d()
-#' tmp <- V.box3d(V=Bs[1:5], TL.len = 2, col=pal(5), add.scale = FALSE)
-#' V.box3d(V=Bs[1:5], TL.len = 2, col=pal(5), shift=c(dist(tmp[[1]]$vb[1,1:2])+5,0,0), scale.len = 1)
+#' tmp <- Vbox3d(V=Bs[1:5], TL.len = 2, alpha=0, add.scale = FALSE)
+#' Vbox3d(V=Bs[1:5], TL.len = 2, col=pal(5), shift=c(dist(tmp[[1]]$vb[1,1:2])+5,0,0), scale.len = 1)
 #' }
 #' 
-V.box3d <- function(V, TL.len = 10, col=seq(V), alpha=0.2, add.scale=TRUE, scale.len = 1, shift=c(0,0,0)){
+Vbox3d <- function(V, TL.len = 10, col=seq(V), alpha=0.2, add.scale=TRUE, scale.len = 1, shift=c(0,0,0)){
   cub <- rgl::cube3d()
   shape.obj <- vector(mode="list", length(V))
   for(i in seq(V)){
@@ -58,9 +58,9 @@ V.box3d <- function(V, TL.len = 10, col=seq(V), alpha=0.2, add.scale=TRUE, scale
     cub.scale$vb[1:3,] <- cub.scale$vb[1:3,] * 0.5 * scale.len
     cub.scale <- rgl::translate3d(
       cub.scale, 
-      max(unlist(lapply(shape.obj, function(x){max(x$vb[1,])}))) + scale.len, # x shift
-      min(unlist(lapply(shape.obj, function(x){min(x$vb[2,])}))) + scale.len, # y shift
-      min(unlist(lapply(shape.obj, function(x){min(x$vb[3,])}))) + scale.len/2 # z shift
+      max(unlist(lapply(shape.obj, function(x){max(x$vb[1,])}))) + scale.len*1.5, # x shift
+      min(unlist(lapply(shape.obj, function(x){min(x$vb[2,])}))) + scale.len*0.5, # y shift
+      min(unlist(lapply(shape.obj, function(x){min(x$vb[3,])}))) + scale.len*0.5 # z shift
     )
     rgl::wire3d( cub.scale )
   }

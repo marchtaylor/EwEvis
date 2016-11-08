@@ -7,20 +7,23 @@
 V2Pdim(V, TEgm)
 }
 \arguments{
-\item{V}{vector of volumes (i.e. throughput) from lowest to highers trophic level}
+\item{V}{vector of volumes (i.e. throughput) from lowest to highest trophic level (TL)}
 
 \item{TEgm}{geometric mean transfer efficiency (TLs 2-4)}
 }
 \value{
-list containing base widths (a), heights (h), cumulative height (cum.h), 
-a:h ratio (ah_ratio), volumes (V), geometric mean transfer efficiency (TEgm), 
-cumulative volume (cum.V)
+A list containing (from lowest to highest TL): base widths (a), heights (h), 
+cumulative height (cum.h), a:h ratio (ah_ratio), volumes (V), 
+geometric mean transfer efficiency (TEgm), cumulative volume (cum.V).
 }
 \description{
-Trophic level volume to pyramid dimensions
+Used internally by \link[EwEvis]{Vpyramid3d}. The angle (i.e. steepness) 
+of the pyramid is determined by the mean transfer efficiency (\code{TEgm}): 
+\code{ah_ratio = -log10(TEgm)}, 
+where \code{ah_ratio} is the ratio between the pyramid base length (a) and height (h).
 }
 \examples{
-# From Tam et al (2008) - Northern Humboldt Cureent Ecosystem (1995-1996)
+# From Tam et al (2008) - Northern Humboldt Current Ecosystem (1995-1996)
 TEgm <- 0.1014
 Ts <- c(27165, 22349, 1658, 266.3, 17.45, 0.607, 0.00515, 6e-06)
 V2Pdim(V = Ts, TEgm = TEgm)
