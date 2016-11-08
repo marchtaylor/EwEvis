@@ -2,7 +2,6 @@
 #'
 #' @param V vector of volumes (i.e. biomass, throughput) from lowest to highest 
 #' trophic level (TL). Pyramid plots usually extend to highest TL (e.g. TL 8 in EwE output) 
-#' @param TL.len height of trophic level 
 #' @param TEgm geometric mean transfer efficiency (TLs 2-4) 
 #' @param col colors of V (vector)
 #' @param alpha alpha of V (single value (0-1))

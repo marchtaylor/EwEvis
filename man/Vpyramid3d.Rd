@@ -22,8 +22,6 @@ trophic level (TL). Pyramid plots usually extend to highest TL (e.g. TL 8 in EwE
 \item{scale.len}{length of side of scale cube (units of V)}
 
 \item{shift}{shift location of plot (x,y,z). Useful in comparitive plots.}
-
-\item{TL.len}{height of trophic level}
 }
 \value{
 rgl output
