@@ -45,17 +45,32 @@
 #'   shift=c(dist(tmp[[1]]$vb[1,1:2])+5,0,0), scale.len = 10
 #' )
 #' 
-#' # illustration  of the effect of TEgm on top angle
+#' # illustration of the effect of TEgm on top angle
 #' rgl::open3d()
-#' tmp <- Vpyramid3d(V=Ts[2:8], TEgm = 0.07, col=2:7, add.scale = FALSE)
-#' tmp2 <- Vpyramid3d(V=Ts[2:8], TEgm = 0.1, col=2:7, 
-#'    shift=c(tmp[[1]]$vb[1,2]+dist(tmp[[1]]$vb[1,1:2])/2,0,0),
+#' tmp <- Vpyramid3d(V=Ts[2:8], TEgm = 0.07, col=2:7, 
+#'     add.scale = FALSE
+#' )
+#' tmp2 <- Vpyramid3d(V=Ts[2:8], TEgm = 0.1, col=2:7,
+#'    shift=c(dist(tmp[[1]]$vb[1,1:2])*1.1,0,0),
 #'    add.scale = FALSE
 #' )
-#' Vpyramid3d(V=Ts[2:8], TEgm = 0.15, col=2:7, 
-#'   shift=c(tmp2[[1]]$vb[1,2]+dist(tmp2[[1]]$vb[1,1:2])/2,0,0),
-#'   scale.len = 10
+#' tmp3 <- Vpyramid3d(V=Ts[2:8], TEgm = 0.15, col=2:7,
+#'   shift=c(dist(tmp[[1]]$vb[1,1:2])*1.1*2,0,0),
+#'   add.scale = TRUE, scale.len = 1000^(1/3)
 #' )
+#' 
+#' # add labels
+#' pos <- data.frame(rbind(
+#'   rowMeans(tmp[[7]]$vb),
+#'   rowMeans(tmp2[[7]]$vb),
+#'   rowMeans(tmp3[[7]]$vb)
+#' ))
+#' names(pos) <- c("x", "y", "z", "w")
+#' 
+#' rgl::text3d(pos$x, y=pos$y, z = pos$z+3,
+#'           text=paste("TE =", c("7%", "10%", "15%")),
+#'        color="black", font=2
+#' ) 
 #' 
 #' } 
 #' 
