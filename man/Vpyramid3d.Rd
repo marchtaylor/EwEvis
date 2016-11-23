@@ -4,14 +4,17 @@
 \alias{Vpyramid3d}
 \title{3d trophic level volume pyramid}
 \usage{
-Vpyramid3d(V, TEgm, col = seq(V), alpha = 0.2, add.scale = TRUE,
-  scale.len = 10, shift = c(0, 0, 0))
+Vpyramid3d(V, TEgm, method = "proportional", col = seq(V), alpha = 0.2,
+  add.scale = TRUE, scale.len = 10, shift = c(0, 0, 0))
 }
 \arguments{
 \item{V}{vector of volumes (i.e. biomass, throughput) from lowest to highest 
 trophic level (TL). Pyramid plots usually extend to highest TL (e.g. TL 8 in EwE output)}
 
 \item{TEgm}{geometric mean transfer efficiency (TLs 2-4)}
+
+\item{method}{Method to use for determining base to height ratio 
+(i.e. pyramid angle). Passed to \link[EwEvis]{V2Pdim}.}
 
 \item{col}{colors of V (vector)}
 
@@ -48,14 +51,29 @@ res <- Vpyramid3d(V=Bs, TEgm = TEgm, col=pal(9), scale.len = 1)
 
 # single plot of throughput by TL
 rgl::open3d()
-res <- Vpyramid3d(V=Ts[2:8], TEgm = TEgm, col=pal(7), scale.len = 10)
+res <- Vpyramid3d(V=Ts[2:8], TEgm = TEgm, col=2:7, scale.len = 10)
 
 # how to set-up a comparison plot (throughout example)
 rgl::open3d()
 tmp <- Vpyramid3d(V=Ts[2:8], TEgm = TEgm, alpha=0, add.scale = FALSE)
-Vpyramid3d(V=Ts[2:8], TEgm = TEgm, col=pal(7), 
-  shift=c(dist(tmp[[1]]$vb[1,1:2])+5,0,0), scale.len = 10)
-}
+Vpyramid3d(V=Ts[2:8], TEgm = TEgm, col=2:7, 
+  shift=c(dist(tmp[[1]]$vb[1,1:2])+5,0,0), scale.len = 10
+)
+
+# illustration  of the effect of TEgm on top angle
+rgl::open3d()
+tmp <- Vpyramid3d(V=Ts[2:8], TEgm = 0.07, col=2:7, add.scale = FALSE)
+tmp2 <- Vpyramid3d(V=Ts[2:8], TEgm = 0.1, col=2:7, 
+   shift=c(tmp[[1]]$vb[1,2]+dist(tmp[[1]]$vb[1,1:2])/2,0,0),
+   add.scale = FALSE
+)
+Vpyramid3d(V=Ts[2:8], TEgm = 0.15, col=2:7, 
+  shift=c(tmp2[[1]]$vb[1,2]+dist(tmp2[[1]]$vb[1,1:2])/2,0,0),
+  scale.len = 10
+)
+
+} 
+
 
 }
 
