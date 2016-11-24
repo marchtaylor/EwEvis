@@ -1,16 +1,24 @@
 #' 3d trophic level volume pyramid
 #'
-#' @param V vector of volumes (i.e. biomass, throughput) from lowest to highest 
-#' trophic level (TL). Pyramid plots usually extend to highest TL (e.g. TL 8 in EwE output) 
-#' @param TEgm geometric mean transfer efficiency (TLs 2-4)
-#' @param method Method to use for determining base to height ratio 
-#' (i.e. pyramid angle). Passed to \link[EwEvis]{V2Pdim}.
-#' @param col colors of V (vector)
+#' @param V vector of volumes (i.e. biomass, throughput) from lowest to 
+#' highest trophic level (TL). 
+#' Pyramid plots usually extend to highest TL (e.g. TL 8 in EwE output). 
+#' Passed to \link[EwEvis]{V2Pdim}. 
+#' @param TEgm geometric mean transfer efficiency (TLs 2-4). 
+#' Passed to \link[EwEvis]{V2Pdim}.
+#' @param col vector of colors for each volume (V).
 #' @param alpha alpha of V (single value (0-1))
-#' @param add.scale logical (TRUE / FALSE) adds scale (cube) to right of box plot
-#' @param scale.len length of side of scale cube (units of V) 
+#' @param add.scale logical (TRUE / FALSE) adds scale (cube) 
+#' to right of box plot.
+#' @param scale.len length of side of scale cube (units of V). 
 #' @param shift shift location of plot (x,y,z). Useful in comparitive plots.
 #' 
+#' @description Produces a trophic pyramid where the vertical seperations
+#' are trophic levels, with volume being biomass or (more typically) 
+#' throuput. The pyramid angle is inversely proportional to the mean 
+#' transfer efficiency (TEgm). V and TEgm arguments are passed to 
+#' the \link[EwEvis]{V2Pdim} function, which calculates the 
+#' pyramid geometry. Output is a 3d model plotted with the rgl package.
 #'
 #' @return
 #' rgl output
@@ -78,7 +86,6 @@
 Vpyramid3d <- function(
   V, 
   TEgm,
-  method = "proportional",
   col=seq(V), 
   alpha=0.2, 
   add.scale=TRUE, 
@@ -87,7 +94,7 @@ Vpyramid3d <- function(
 ){
   cub <- rgl::cube3d()
   shape.obj <- vector(mode="list", length(V))
-  res <- EwEvis::V2Pdim(V = V, TEgm = TEgm, method = method)
+  res <- EwEvis::V2Pdim(V = V, TEgm = TEgm)
   for(i in seq(shape.obj)){
     cubi <- cub
     cubi$vb[1:2,c(1:4)] <- cubi$vb[1:2,c(1:4)]*(res$a[i]/2) # bottom

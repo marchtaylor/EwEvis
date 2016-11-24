@@ -4,16 +4,12 @@
 \alias{V2Pdim}
 \title{Trophic level volume to pyramid dimensions}
 \usage{
-V2Pdim(V, TEgm, method = "proportional")
+V2Pdim(V, TEgm)
 }
 \arguments{
 \item{V}{vector of volumes (i.e. throughput) from lowest to highest trophic level (TL)}
 
 \item{TEgm}{geometric mean transfer efficiency (TLs 2-4)}
-
-\item{method}{Method to use for determining base to height ratio 
-(i.e. pyramid angle). Choices include "proportional" (default) or 
-"log". "proportional" is}
 }
 \value{
 A list containing (from lowest to highest TL): base widths (a), heights (h), 
@@ -23,11 +19,7 @@ geometric mean transfer efficiency (TEgm), cumulative volume (cum.V).
 \description{
 Used internally by \link[EwEvis]{Vpyramid3d}. The angle (i.e. steepness) 
 of the pyramid is determined by the mean transfer efficiency (\code{TEgm}). 
-In the case of method = "proportional", the top angle is proportional
-to the inverse of the TEgm value. 
-When method = "log", the ratio between the pyramid base length (a) 
-and height (h) (i.e. "ah_ratio") is determined as 
-\code{ah_ratio = -log10(TEgm)}. Supsequently the top angle is calculated.
+The top angle is proportional to the inverse of the TEgm value.
 }
 \examples{
 # From Tam et al (2008) - Northern Humboldt Current Ecosystem (1995-1996)

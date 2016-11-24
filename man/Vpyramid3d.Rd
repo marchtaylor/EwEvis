@@ -4,25 +4,26 @@
 \alias{Vpyramid3d}
 \title{3d trophic level volume pyramid}
 \usage{
-Vpyramid3d(V, TEgm, method = "proportional", col = seq(V), alpha = 0.2,
-  add.scale = TRUE, scale.len = 10, shift = c(0, 0, 0))
+Vpyramid3d(V, TEgm, col = seq(V), alpha = 0.2, add.scale = TRUE,
+  scale.len = 10, shift = c(0, 0, 0))
 }
 \arguments{
-\item{V}{vector of volumes (i.e. biomass, throughput) from lowest to highest 
-trophic level (TL). Pyramid plots usually extend to highest TL (e.g. TL 8 in EwE output)}
+\item{V}{vector of volumes (i.e. biomass, throughput) from lowest to 
+highest trophic level (TL). 
+Pyramid plots usually extend to highest TL (e.g. TL 8 in EwE output). 
+Passed to \link[EwEvis]{V2Pdim}.}
 
-\item{TEgm}{geometric mean transfer efficiency (TLs 2-4)}
+\item{TEgm}{geometric mean transfer efficiency (TLs 2-4). 
+Passed to \link[EwEvis]{V2Pdim}.}
 
-\item{method}{Method to use for determining base to height ratio 
-(i.e. pyramid angle). Passed to \link[EwEvis]{V2Pdim}.}
-
-\item{col}{colors of V (vector)}
+\item{col}{vector of colors for each volume (V).}
 
 \item{alpha}{alpha of V (single value (0-1))}
 
-\item{add.scale}{logical (TRUE / FALSE) adds scale (cube) to right of box plot}
+\item{add.scale}{logical (TRUE / FALSE) adds scale (cube) 
+to right of box plot.}
 
-\item{scale.len}{length of side of scale cube (units of V)}
+\item{scale.len}{length of side of scale cube (units of V).}
 
 \item{shift}{shift location of plot (x,y,z). Useful in comparitive plots.}
 }
@@ -30,7 +31,12 @@ trophic level (TL). Pyramid plots usually extend to highest TL (e.g. TL 8 in EwE
 rgl output
 }
 \description{
-3d trophic level volume pyramid
+Produces a trophic pyramid where the vertical seperations
+are trophic levels, with volume being biomass or (more typically) 
+throuput. The pyramid angle is inversely proportional to the mean 
+transfer efficiency (TEgm). V and TEgm arguments are passed to 
+the \link[EwEvis]{V2Pdim} function, which calculates the 
+pyramid geometry. Output is a 3d model plotted with the rgl package.
 }
 \examples{
 
