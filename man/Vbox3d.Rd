@@ -4,8 +4,8 @@
 \alias{Vbox3d}
 \title{3d trophic level volume boxes}
 \usage{
-Vbox3d(V, TL.len = 10, col = seq(V), alpha = 0.2, add.scale = TRUE,
-  scale.len = 1, shift = c(0, 0, 0))
+Vbox3d(V, TL.len = 10, col = seq(V), col.bases.only = FALSE,
+  alpha = 0.2, add.scale = TRUE, scale.len = 1, shift = c(0, 0, 0))
 }
 \arguments{
 \item{V}{vector of volumes (i.e. biomass, throughput) from lowest to highest trophic level}
@@ -13,6 +13,8 @@ Vbox3d(V, TL.len = 10, col = seq(V), alpha = 0.2, add.scale = TRUE,
 \item{TL.len}{height of trophic level}
 
 \item{col}{colors of V (vector)}
+
+\item{col.bases.only}{Logical. Color bases of trophic levels only?}
 
 \item{alpha}{alpha of V (single value (0-1))}
 
@@ -47,6 +49,11 @@ res <- Vbox3d(V=Bs[1:5], TL.len = 2, col=pal(5), scale.len = 1)
 # single plot of throughput by TL
 rgl::open3d()
 res <- Vbox3d(V=Ts[2:5], TL.len = 10, col=pal(4), alpha=0.2, scale.len = 10)
+
+# color bases only
+rgl::open3d()
+res <- Vbox3d(V=Ts[2:5], TL.len = 10, col=8, col.bases.only = TRUE,
+   alpha=0.5, scale.len = 10)
 
 # how to set-up a comparison plot (biomass example)
 rgl::open3d()

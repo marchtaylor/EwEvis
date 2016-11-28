@@ -4,8 +4,8 @@
 \alias{Vpyramid3d}
 \title{3d trophic level volume pyramid}
 \usage{
-Vpyramid3d(V, TEgm, col = seq(V), alpha = 0.2, add.scale = TRUE,
-  scale.len = 10, shift = c(0, 0, 0))
+Vpyramid3d(V, TEgm, col = seq(V), alpha = 0.2, col.bases.only = FALSE,
+  add.scale = TRUE, scale.len = 10, shift = c(0, 0, 0))
 }
 \arguments{
 \item{V}{vector of volumes (i.e. biomass, throughput) from lowest to 
@@ -16,9 +16,12 @@ Passed to \link[EwEvis]{V2Pdim}.}
 \item{TEgm}{geometric mean transfer efficiency (TLs 2-4). 
 Passed to \link[EwEvis]{V2Pdim}.}
 
-\item{col}{vector of colors for each volume (V).}
+\item{col}{vector of colors for each volume (V). If shorter than V, colors 
+will be cycled.}
 
 \item{alpha}{alpha of V (single value (0-1))}
+
+\item{col.bases.only}{Logical. Color bases of trophic levels only?}
 
 \item{add.scale}{logical (TRUE / FALSE) adds scale (cube) 
 to right of box plot.}
@@ -58,6 +61,11 @@ res <- Vpyramid3d(V=Bs, TEgm = TEgm, col=pal(9), scale.len = 1)
 # single plot of throughput by TL
 rgl::open3d()
 res <- Vpyramid3d(V=Ts[2:8], TEgm = TEgm, col=2:7, scale.len = 10)
+
+# color bases only
+rgl::open3d()
+res <- Vpyramid3d(V=Ts[2:8], TEgm = TEgm, col=8, alpha=0.5, col.bases.only = TRUE, scale.len = 10)
+
 
 # how to set-up a comparison plot (throughout example)
 rgl::open3d()

@@ -6,7 +6,9 @@
 #' Passed to \link[EwEvis]{V2Pdim}. 
 #' @param TEgm geometric mean transfer efficiency (TLs 2-4). 
 #' Passed to \link[EwEvis]{V2Pdim}.
-#' @param col vector of colors for each volume (V).
+#' @param col vector of colors for each volume (V). If shorter than V, colors 
+#' will be cycled.
+#' @param col.bases.only Logical. Color bases of trophic levels only?
 #' @param alpha alpha of V (single value (0-1))
 #' @param add.scale logical (TRUE / FALSE) adds scale (cube) 
 #' to right of box plot.
@@ -45,6 +47,11 @@
 #' # single plot of throughput by TL
 #' rgl::open3d()
 #' res <- Vpyramid3d(V=Ts[2:8], TEgm = TEgm, col=2:7, scale.len = 10)
+#' 
+#' # color bases only
+#' rgl::open3d()
+#' res <- Vpyramid3d(V=Ts[2:8], TEgm = TEgm, col=8, alpha=0.5, col.bases.only = TRUE, scale.len = 10)
+#' 
 #' 
 #' # how to set-up a comparison plot (throughout example)
 #' rgl::open3d()
@@ -86,12 +93,14 @@
 Vpyramid3d <- function(
   V, 
   TEgm,
-  col=seq(V), 
-  alpha=0.2, 
-  add.scale=TRUE, 
+  col = seq(V), 
+  alpha = 0.2,
+  col.bases.only = FALSE,
+  add.scale = TRUE, 
   scale.len = 10, 
-  shift=c(0,0,0)
+  shift = c(0,0,0)
 ){
+  # Make TL shapes
   cub <- rgl::cube3d()
   shape.obj <- vector(mode="list", length(V))
   res <- EwEvis::V2Pdim(V = V, TEgm = TEgm)
@@ -104,10 +113,18 @@ Vpyramid3d <- function(
       cubi$vb[1:2,c(5:8)] <- cubi$vb[1:2,c(5:8)]*0 # top
     }
     cubi$vb[3,] <- cubi$vb[3,]*c(rep(0,4),rep(res$h[i],4))
-    
     shape.obj[[i]] <- rgl::translate3d( cubi, shift[1], shift[2], sum(res$h[seq(from=0,to=i-1)]) + shift[3])
-    rgl::wire3d( shape.obj[[i]] )
-    rgl::shade3d( shape.obj[[i]], col=col[i], alpha=alpha)
+  }
+  
+  # draw TL shapes
+  col <- rep_len(col, length.out = length(shape.obj))
+  for(i in seq(shape.obj)){
+    rgl::wire3d( shape.obj[[i]])
+    if(col.bases.only){
+      rgl::shade3d( rgl::qmesh3d(vertices=shape.obj[[i]]$vb, indices=shape.obj[[i]]$ib[,1]), col=col[i], alpha=alpha )
+    } else {
+      rgl::shade3d( shape.obj[[i]], col=col[i], alpha=alpha)
+    }
   }
   
   # add scale
