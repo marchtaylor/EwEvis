@@ -20,11 +20,11 @@ install_github("marchtaylor/EwEvis")
 
 **Examples:**
 
-<img src="working/3dbox_Bs.png" width="500">
+<img src="examples/3dbox_Bs.png" width="500">
 
 *Vbox3d() - Biomass and Throughput by trophic level*
 
 
-<img src="working/3dpyramid_Ts_TE.png" width="500">
+<img src="examples/3dpyramid_Ts_TE.png" width="500">
 
 *Vpyramid3d() - Throughput by trophic level with differing mean transfer efficiency (TE)*
