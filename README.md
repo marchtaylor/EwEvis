@@ -16,7 +16,7 @@ Ecopath with Ecosim (EwE) visualization. Allows for the creation of 3d visualiza
     library(devtools)
     install_github("marchtaylor/EwEvis")
 
-**Examples:** (for additional info, see [vignette](https://cdn.rawgit.com/marchtaylor/EwEvis/master/vignettes/EwEvis_vignette.html))
+**Examples:** (for additional info, see [vignette](https://rawgit.com/marchtaylor/EwEvis/master/vignettes/EwEvis_vignette.html))
 
 <img src="examples/3dbox_Bs.png" width="500">
 
