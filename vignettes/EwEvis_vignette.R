@@ -4,7 +4,7 @@ library(rgl)
 library(EwEvis)
 knit_hooks$set(webgl = hook_webgl)
 
-## ----testgl, webgl=TRUE--------------------------------------------------
+## ----testgl, webgl=TRUE, fig.width = 6, fig.height = 6-------------------
 library(rgl)
 library(EwEvis)
 
@@ -15,13 +15,15 @@ Bs <- c(62.84, 147.1, 70.05, 20.61, 1.658, 0.084, 0.000657, 1e-06, 0)
 res <- V2Pdim(V = Ts, TEgm=TEgm)
 pal <- colorRampPalette(c("green", "yellow", "red"), bias=3)
 
+options(fig.height=600, fig.width=600)
 open3d()
+# par3d(windowRect = c(100,100,600,600))
 tmp1 <- Vbox3d(V=Bs[1:5], TL.len = 10, col=pal(5), add.scale = FALSE)
 tmp2 <- Vbox3d(V=Ts[1:5], TL.len = 10, col=pal(5), add.scale = TRUE, 
   shift=c(dist(tmp1[[1]]$vb[1,1:2])*20,0,0), scale.len = 1000^(1/3)
 )
 
-## ----testgl2, webgl=TRUE-------------------------------------------------
+## ----testgl2, webgl=TRUE, fig.width = 6, fig.height = 6------------------
 open3d()
 tmp <- Vpyramid3d(V=Ts[2:8], TEgm = 0.07, col=2:7, 
     add.scale = FALSE
