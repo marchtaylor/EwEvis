@@ -14,6 +14,7 @@
 #' to right of box plot.
 #' @param scale.len length of side of scale cube (units of V). 
 #' @param shift shift location of plot (x,y,z). Useful in comparitive plots.
+#' @param draw Logical. Produce plot (Default: draw = TRUE)
 #' 
 #' @description Produces a trophic pyramid where the vertical seperations
 #' are trophic levels, with volume being biomass or (more typically) 
@@ -98,7 +99,8 @@ Vpyramid3d <- function(
   col.bases.only = FALSE,
   add.scale = TRUE, 
   scale.len = 10, 
-  shift = c(0,0,0)
+  shift = c(0,0,0),
+  draw = TRUE
 ){
   # Make TL shapes
   cub <- rgl::cube3d()
@@ -117,27 +119,30 @@ Vpyramid3d <- function(
   }
   
   # draw TL shapes
-  col <- rep_len(col, length.out = length(shape.obj))
-  for(i in seq(shape.obj)){
-    rgl::wire3d( shape.obj[[i]])
-    if(col.bases.only){
-      rgl::shade3d( rgl::qmesh3d(vertices=shape.obj[[i]]$vb, indices=shape.obj[[i]]$ib[,1]), col=col[i], alpha=alpha )
-    } else {
-      rgl::shade3d( shape.obj[[i]], col=col[i], alpha=alpha)
+  if(draw){
+    col <- rep_len(col, length.out = length(shape.obj))
+    for(i in seq(shape.obj)){
+      rgl::wire3d( shape.obj[[i]])
+      if(col.bases.only){
+        rgl::shade3d( rgl::qmesh3d(vertices=shape.obj[[i]]$vb, indices=shape.obj[[i]]$ib[,1]), col=col[i], alpha=alpha )
+      } else {
+        rgl::shade3d( shape.obj[[i]], col=col[i], alpha=alpha)
+      }
+    }
+    
+    # add scale
+    if(add.scale){
+      cub.scale <- cub
+      cub.scale$vb[1:3,] <- cub.scale$vb[1:3,] * 0.5 * scale.len
+      cub.scale <- rgl::translate3d(
+        cub.scale, 
+        max(unlist(lapply(shape.obj, function(x){max(x$vb[1,])}))) + scale.len*1.5, # x shift
+        min(unlist(lapply(shape.obj, function(x){min(x$vb[2,])}))) + scale.len*0.5, # y shift
+        min(unlist(lapply(shape.obj, function(x){min(x$vb[3,])}))) + scale.len*0.5 # z shift
+      )
+      rgl::wire3d( cub.scale )
     }
   }
-  
-  # add scale
-  if(add.scale){
-    cub.scale <- cub
-    cub.scale$vb[1:3,] <- cub.scale$vb[1:3,] * 0.5 * scale.len
-    cub.scale <- rgl::translate3d(
-      cub.scale, 
-      max(unlist(lapply(shape.obj, function(x){max(x$vb[1,])}))) + scale.len*1.5, # x shift
-      min(unlist(lapply(shape.obj, function(x){min(x$vb[2,])}))) + scale.len*0.5, # y shift
-      min(unlist(lapply(shape.obj, function(x){min(x$vb[3,])}))) + scale.len*0.5 # z shift
-    )
-    rgl::wire3d( cub.scale )
-  }
+
   return(shape.obj)
 }

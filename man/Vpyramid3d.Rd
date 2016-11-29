@@ -5,7 +5,7 @@
 \title{3d trophic level volume pyramid}
 \usage{
 Vpyramid3d(V, TEgm, col = seq(V), alpha = 0.2, col.bases.only = FALSE,
-  add.scale = TRUE, scale.len = 10, shift = c(0, 0, 0))
+  add.scale = TRUE, scale.len = 10, shift = c(0, 0, 0), draw = TRUE)
 }
 \arguments{
 \item{V}{vector of volumes (i.e. biomass, throughput) from lowest to 
@@ -29,6 +29,8 @@ to right of box plot.}
 \item{scale.len}{length of side of scale cube (units of V).}
 
 \item{shift}{shift location of plot (x,y,z). Useful in comparitive plots.}
+
+\item{draw}{Logical. Produce plot (Default: draw = TRUE)}
 }
 \value{
 rgl output

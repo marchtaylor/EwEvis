@@ -5,7 +5,8 @@
 \title{3d trophic level volume boxes}
 \usage{
 Vbox3d(V, TL.len = 10, col = seq(V), col.bases.only = FALSE,
-  alpha = 0.2, add.scale = TRUE, scale.len = 1, shift = c(0, 0, 0))
+  alpha = 0.2, add.scale = TRUE, scale.len = 1, shift = c(0, 0, 0),
+  draw = TRUE)
 }
 \arguments{
 \item{V}{vector of volumes (i.e. biomass, throughput) from lowest to highest trophic level}
@@ -23,6 +24,8 @@ Vbox3d(V, TL.len = 10, col = seq(V), col.bases.only = FALSE,
 \item{scale.len}{length of side of scale cube (units of V)}
 
 \item{shift}{shift location of plot (x,y,z). Useful in comparitive plots.}
+
+\item{draw}{Logical. Produce plot (Default: draw = TRUE)}
 }
 \value{
 rgl output
@@ -48,7 +51,8 @@ res <- Vbox3d(V=Bs[1:5], TL.len = 2, col=pal(5), scale.len = 1)
 
 # single plot of throughput by TL
 rgl::open3d()
-res <- Vbox3d(V=Ts[2:5], TL.len = 10, col=pal(4), alpha=0.2, scale.len = 10)
+res <- Vbox3d(V=Ts[2:5], TL.len = 10, col=pal(4), alpha=0.2, 
+ scale.len = 10)
 
 # color bases only
 rgl::open3d()
@@ -58,7 +62,9 @@ res <- Vbox3d(V=Ts[2:5], TL.len = 10, col=8, col.bases.only = TRUE,
 # how to set-up a comparison plot (biomass example)
 rgl::open3d()
 tmp <- Vbox3d(V=Bs[1:5], TL.len = 2, alpha=0, add.scale = FALSE)
-Vbox3d(V=Bs[1:5], TL.len = 2, col=pal(5), shift=c(dist(tmp[[1]]$vb[1,1:2])+5,0,0), scale.len = 1)
+Vbox3d(V=Bs[1:5], TL.len = 2, col=pal(5), 
+ shift=c(dist(tmp[[1]]$vb[1,1:2])+5,0,0), scale.len = 1)
+
 }
 
 }
