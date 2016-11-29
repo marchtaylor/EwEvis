@@ -15,3 +15,6 @@ License: MIT
 BugReports: https://github.com/marchtaylor/EwEvis/issues
 URL: https://github.com/marchtaylor/EwEvis
 RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
