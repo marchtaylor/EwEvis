@@ -1,8 +1,8 @@
 Package: EwEvis
 Type: Package
 Title: Ecopath with Ecosim visualization
-Version: 0.1
-Date: 2016-11-07
+Version: 0.2
+Date: 2016-11-30
 Author: Marc H. Taylor
 Maintainer: Marc H. Taylor <ningkiling@gmail.com>
 Depends:
@@ -11,7 +11,7 @@ Imports:
     rgl
 LazyData: TRUE
 Description: 3d visualization of biomass and throughput statistics.
-License: MIT
+License: GPL-3
 BugReports: https://github.com/marchtaylor/EwEvis/issues
 URL: https://github.com/marchtaylor/EwEvis
 RoxygenNote: 5.0.1
