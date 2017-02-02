@@ -16,12 +16,12 @@ Ecopath with Ecosim (EwE) visualization. Allows for the creation of 3d visualiza
     library(devtools)
     install_github("marchtaylor/EwEvis")
 
-**Examples:** (for additional info, see [vignette](https://rawgit.com/marchtaylor/EwEvis/master/vignettes/EwEvis_vignette.html))
+**Examples:** (for additional info and interactive graphics, see [vignette](https://rawgit.com/marchtaylor/EwEvis/master/vignettes/EwEvis_vignette.html))
 
 <img src="examples/3dbox_Bs.png" width="500">
 
-*Vbox3d() - Biomass and Throughput by trophic level*
+*Vbox3d()* - Biomass and Throughput by trophic level
 
 <img src="examples/3dpyramid_Ts_TE.png" width="500">
 
-*Vpyramid3d() - Throughput by trophic level with differing mean transfer efficiency (TE)*
+*Vpyramid3d()* - Throughput by trophic level with differing mean transfer efficiency (TE)
