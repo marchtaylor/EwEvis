@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-EwEvis
+EwEvis :poop:
 =====
 
 [![Travis-CI Build Status](https://travis-ci.org/marchtaylor/EwEvis.svg?branch=master)](https://travis-ci.org/marchtaylor/EwEvis)
