@@ -1,4 +1,4 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit this file -->
 EwEvis :poop:
 =============
 
@@ -16,7 +16,7 @@ Ecopath with Ecosim (EwE) visualization. Allows for the creation of 3d visualiza
     library(devtools)
     install_github("marchtaylor/EwEvis")
 
-**Examples:** (for additional info and interactive graphics, see [vignette](https://rawgit.com/marchtaylor/EwEvis/master/vignettes/EwEvis_vignette.html))
+**Examples:** (for additional info and interactive graphics, see [vignette](https://raw.githack.com/marchtaylor/EwEvis/master/doc/EwEvis_vignette.html))
 
 <img src="examples/3dbox_Bs.png" width="500">
 
