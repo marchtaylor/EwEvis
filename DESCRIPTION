@@ -14,7 +14,7 @@ Description: 3d visualization of biomass and throughput statistics.
 License: GPL-3
 BugReports: https://github.com/marchtaylor/EwEvis/issues
 URL: https://github.com/marchtaylor/EwEvis
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.1
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

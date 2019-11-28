@@ -68,4 +68,3 @@ Vbox3d(V=Bs[1:5], TL.len = 2, col=pal(5),
 }
 
 }
-

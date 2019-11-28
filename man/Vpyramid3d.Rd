@@ -4,8 +4,9 @@
 \alias{Vpyramid3d}
 \title{3d trophic level volume pyramid}
 \usage{
-Vpyramid3d(V, TEgm, col = seq(V), alpha = 0.2, col.bases.only = FALSE,
-  add.scale = TRUE, scale.len = 10, shift = c(0, 0, 0), draw = TRUE)
+Vpyramid3d(V, TEgm, col = seq(V), alpha = 0.2,
+  col.bases.only = FALSE, add.scale = TRUE, scale.len = 10,
+  shift = c(0, 0, 0), draw = TRUE)
 }
 \arguments{
 \item{V}{vector of volumes (i.e. biomass, throughput) from lowest to 
@@ -107,4 +108,3 @@ rgl::text3d(pos$x, y=pos$y, z = pos$z+3,
 
 
 }
-
