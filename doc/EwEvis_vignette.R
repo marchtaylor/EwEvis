@@ -7,7 +7,7 @@ library(knitr)
 knit_hooks$set(webgl = hook_webgl)
 
 ## ------------------------------------------------------------------------
-# Northern Humboldt Current Ecosystem (La Niña, Tam et al. 2008)
+# Northern Humboldt Current Ecosystem (La NiÃ±a, Tam et al. 2008)
 TEgm <- 0.1014 # mean transfer efficiency (trophic levels 2-4)
 Ts <- c(27165, 22349, 1658, 266.3, 17.45, 0.607, 0.00515, 6e-06) # Throughout
 Bs <- c(62.84, 147.1, 70.05, 20.61, 1.658, 0.084, 0.000657, 1e-06, 0) # Biomass
